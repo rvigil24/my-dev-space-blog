@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+//components
+import CategoryLabel from "./CategoryLabel";
+
 export default function Post({ post }) {
   const { frontmatter: data } = post;
   const { cover_image, title, date, category, slug, excerpt } = data;
@@ -18,7 +21,9 @@ export default function Post({ post }) {
       {/* details */}
       <div className="flex justify-between items-center">
         <span className="font-light text-gray-600">{date}</span>
-        <div>{category}</div>
+        <div>
+          <CategoryLabel category={category} />
+        </div>
       </div>
 
       {/* slug */}
