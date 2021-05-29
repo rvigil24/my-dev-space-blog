@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import * as matter from "gray-matter";
 
 //components
 import CategoryLabel from "./CategoryLabel";
@@ -28,7 +29,7 @@ export default function Post({ post }) {
 
       {/* slug */}
       <div className="mt-2">
-        <Link href={`/blog/${slug}`}>
+        <Link href={`/blog/${post.slug}`}>
           <a className="text-2xl text-gray-700 font-bold hover:underline">
             {post.frontmatter.title}
           </a>
