@@ -8,6 +8,7 @@ export default (req, res) => {
   } else {
     const files = fs.readdirSync(path.join("posts"));
     posts = files.map((filename) => {
+      const slug = filename.replace(".md", "");
       const markdownWithMeta = fs.readFileSync(
         path.join("posts", filename),
         "utf-8"
@@ -16,6 +17,7 @@ export default (req, res) => {
       const { data: frontmatter } = matter(markdownWithMeta);
       return {
         frontmatter,
+        slug
       };
     });
   }
