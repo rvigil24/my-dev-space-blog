@@ -8,16 +8,29 @@ import { getPosts } from "@/lib/post";
 //components
 import Layout from "@/components/Layout";
 import Post from "@/components/Post";
+import CategoryList from "@/components/CategoryList";
 
-export default function CategoryNamePage({ posts, category }) {
+export default function CategoryNamePage({ posts, category, categories }) {
   return (
     <Layout>
-      <h1 className="text-5xl border-b-4 p-5 font-bold">Posts in {category}</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-4">
+        {/* category list */}
+        <div className="col-span-1">
+          <CategoryList categories={categories} />
+        </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-2 lg:grid-cols-3 gap-5">
-        {posts.map((post, index) => {
-          return <Post key={index} post={post} />;
-        })}
+        {/* posts */}
+        <div className="col-span-4">
+          <h1 className="text-5xl border-b-4 p-5 font-bold">
+            Posts in {category}
+          </h1>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 lg:grid-cols-3 gap-5">
+            {posts.map((post, index) => {
+              return <Post key={index} post={post} />;
+            })}
+          </div>
+        </div>
       </div>
     </Layout>
   );
@@ -53,6 +66,10 @@ export async function getStaticProps({ params: { category_name } }) {
 
   const posts = getPosts();
 
+  //categories list
+  const categoriesList = posts.map((post) => post.frontmatter.category);
+  const uniqueCategories = [...new Set(categoriesList)];
+
   //filter posts by category
   const categoryPosts = posts.filter(
     (post) => post.frontmatter.category.toLowerCase() === category_name
@@ -62,6 +79,7 @@ export async function getStaticProps({ params: { category_name } }) {
     props: {
       posts: categoryPosts,
       category: category_name,
+      categories: uniqueCategories,
     },
   };
 }

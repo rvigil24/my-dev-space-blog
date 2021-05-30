@@ -9,21 +9,33 @@ export default function Pagination({ currentPage, numPages }) {
   if (numPages === 1) return <></>;
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div className="bg-white px-4 py-3 flex items-center justify-center border-t border-gray-200 sm:px-6">
+
+      {/* for mobile */}
+
+      {/* previous button */}
       <div className="flex-1 flex justify-between sm:hidden">
-        <a
-          href="#"
-          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-        >
-          Previous
-        </a>
-        <a
-          href="#"
-          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-        >
-          Next
-        </a>
+        {currentPage > 1 && (
+          <Link href={`/blog/page/${currentPage - 1}`}>
+            <a className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+              Previous
+            </a>
+          </Link>
+        )}
+
+        {/* next button */}
+        {currentPage < numPages && (
+          <Link href={`/blog/page/${currentPage + 1}`}>
+            <a
+              className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            >
+              Next
+            </a>
+          </Link>
+        )}
       </div>
+
+      {/* large devices */}
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <nav
