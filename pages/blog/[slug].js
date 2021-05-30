@@ -44,7 +44,7 @@ export default function PostPage({ frontmatter, content, slug }) {
 
         {/* post content */}
         <div className="blog-text mt-2">
-          <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
+          <div className="overflow-x-auto overflow-y-auto" dangerouslySetInnerHTML={{ __html: marked(content) }} />
         </div>
       </div>
     </Layout>
