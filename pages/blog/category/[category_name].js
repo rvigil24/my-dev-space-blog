@@ -3,13 +3,11 @@ import path from "path";
 import * as matter from "gray-matter";
 
 //utils
-import { sortByDate } from "@/utils/index";
-import { POSTS_PER_PAGE } from "@/config/index";
+import { getPosts } from "@/lib/post";
 
 //components
 import Layout from "@/components/Layout";
 import Post from "@/components/Post";
-import Pagination from "@/components/Pagination";
 
 export default function CategoryNamePage({ posts, category }) {
   return (
@@ -53,18 +51,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { category_name } }) {
   const files = fs.readdirSync(path.join("posts"));
 
-  const posts = files.map((filename) => {
-    const slug = filename.replace("md", "");
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", filename),
-      "utf-8"
-    );
-    const { data: frontmatter } = matter(markdownWithMeta);
-    return {
-      slug,
-      frontmatter,
-    };
-  });
+  const posts = getPosts();
 
   //filter posts by category
   const categoryPosts = posts.filter(
