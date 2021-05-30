@@ -9,12 +9,10 @@ export default function CategoryLabel({ category }) {
     CSS: "blue",
   };
 
-  console.log(colorKey[category]);
-
   return (
     <div
       style={{ paddingTop: "0.1em", paddingBottom: "0.1rem" }}
-      class={`text-xs px-3 bg-${colorKey[category]}-200 text-${colorKey[category]}-800 rounded-full`}
+      className={`text-xs px-3 bg-${colorKey[category]}-200 text-${colorKey[category]}-800 rounded-full`}
     >
       <Link href={`/blog/category/${category.toLowerCase()}`}>
         <a>{category}</a>
