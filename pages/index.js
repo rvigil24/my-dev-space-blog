@@ -4,11 +4,11 @@ import Link from "next/link";
 import * as matter from "gray-matter";
 
 //utils
-import { sortByDate } from "../utils";
+import { sortByDate } from "@/utils/index";
 
 //components
-import Layout from "../components/Layout";
-import Post from "../components/Post";
+import Layout from "@/components/Layout";
+import Post from "@/components/Post";
 
 export default function HomePage({ posts }) {
   return (

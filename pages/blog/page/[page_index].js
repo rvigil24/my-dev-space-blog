@@ -4,13 +4,13 @@ import Link from "next/link";
 import * as matter from "gray-matter";
 
 //utils
-import { sortByDate } from "../../../utils";
-import { POSTS_PER_PAGE } from "../../../config/index";
+import { sortByDate } from "@/utils/index";
+import { POSTS_PER_PAGE } from "@/config/index";
 
 //components
-import Layout from "../../../components/Layout";
-import Post from "../../../components/Post";
-import Pagination from "../../../components/Pagination";
+import Layout from "@/components/Layout";
+import Post from "@/components/Post";
+import Pagination from "@/components/Pagination";
 
 export default function BlogPage({ posts, numPages, currentPage }) {
   return (
@@ -37,8 +37,6 @@ export async function getStaticPaths() {
       params: { page_index: i.toString() },
     });
   }
-
-  console.log(paths);
 
   return {
     paths,

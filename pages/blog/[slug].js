@@ -7,8 +7,8 @@ import marked from "marked";
 import matter from "gray-matter";
 
 //components
-import Layout from "../../components/Layout";
-import CategotyLabel from "../../components/CategoryLabel";
+import Layout from "@/components/Layout";
+import CategotyLabel from "@/components/CategoryLabel";
 
 export default function PostPage({ frontmatter, content, slug }) {
   const { title, category, cover_image, date, author, excerpt, author_image } =
@@ -58,7 +58,6 @@ export async function getStaticPaths() {
       slug: filename.replace(".md", ""),
     },
   }));
-  console.log(paths);
   return {
     paths,
     fallback: false, // See the "fallback" section below
